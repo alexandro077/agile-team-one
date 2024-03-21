@@ -162,7 +162,7 @@ if (isset($_POST['email'])) {
 
 												<?php  ?>
 
-												<?php if( $_GET['msg'] == "alterada" )  ?>
+												<?php if(isset($_GET['msg']) && $_GET['msg'] == "alterada" )  ?>
 
 												<div class="row">
 
@@ -186,7 +186,7 @@ if (isset($_POST['email'])) {
 														<div class="form-field form-field-icon form-field-text">
 
 															<i class="form-icon lni lni-user"></i>
-															<input type="text" name="email" placeholder="E-mail" value="<?php echo htmlclean( $_GET['email'] ); ?>"/>
+															<input type="text" name="email" placeholder="E-mail" value="<?php echo isset($_GET['email']) ? htmlclean( $_GET['email'] ):""; ?>"/>
 
 														</div>
 

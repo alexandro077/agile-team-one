@@ -4,12 +4,12 @@ include('../../_core/_includes/config.php');
 $id = mysqli_real_escape_string( $db_con, $_GET['id'] );
 $define_query = mysqli_query( $db_con, "SELECT cor FROM estabelecimentos WHERE id = '$id' LIMIT 1");
 $define_data = mysqli_fetch_array( $define_query );
-$cor = isset($define_data['cor']);
+$cor = ($define_data['cor']);
 if( !$cor ) {
 	$cor = "#27293E";
 }
 ?>
-
+<style> 
 .naver {
 background: transparent;
 }
@@ -148,6 +148,7 @@ color: #fff !important;
 border: 0;
 background: <?php echo $cor; ?> !important;
 }
+</style>
 
 /* ALL MOBILE */
 
@@ -179,10 +180,9 @@ background: <?php echo $cor; ?> !important;
 
 }
 
-}
-
 /* ALL DESK */
 
 @media (min-width: 991px) {
 
 }
+</style>

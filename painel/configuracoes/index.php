@@ -1701,7 +1701,7 @@ include('../_layout/footer.php');
   $( "#input-estado" ).change(function() {
     exibe_cidades();
   });
-  <?php if( $_POST['estado'] ) { ?>
+  <?php if(isset( $_POST['estado'] )) { ?>
     exibe_cidades();
   <?php } ?>
 
