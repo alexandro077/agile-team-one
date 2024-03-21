@@ -2,15 +2,15 @@
 // CORE
 require_once('../../_core/_includes/config.php');
 
-if( $_SESSION['user']['logged'] == "1" ) {
+if (isset($_SESSION['user']) && isset($_SESSION['user']['logged']) && $_SESSION['user']['logged'] === "1") {
+  // User is logged in
+  if (isset($_SESSION['user']['level']) && ($_SESSION['user']['level'] === "1" || $_SESSION['user']['level'] === "2")) 
+      // User has a valid level (1 or 2)
 
-  if( $_SESSION['user']['level'] == "1" ) {
-    header("Location: ../../administracao/inicio");
-  }
+      if ($_SESSION['user']['level'] === "1") 
+          // Redirect to admin dashboard
+          header("Location: ../../administracao/inicio");
 
-  if( $_SESSION['user']['level'] == "2" ) {
-    header("Location: ../../painel/inicio");
-  }
 
 }
 

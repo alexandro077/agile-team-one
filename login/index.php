@@ -8,7 +8,7 @@ $seo_keywords = "";
 // HEADER
 $system_header = "";
 // CHECK LOGGED
-if( $_SESSION['user']['logged'] == "1" ) {
+if(isset($_SESSION['user']) && $_SESSION['user']['logged'] == "1" ) {
 
 	if( $_SESSION['user']['level'] == "1" ) {
 		header("Location: ../administracao/inicio");
@@ -70,15 +70,26 @@ if ("serviceWorker" in navigator) {
 
 		<?php
 
-		$redirect = mysqli_real_escape_string( $db_con, $_GET['redirect'] );
-		// if( !$redirect ) {
-		// 	$redirect = $_SERVER['HTTP_REFERER'];
-		// }
-		$email = strtolower( mysqli_real_escape_string( $db_con, $_POST['email'] ) );
-		$pass = mysqli_real_escape_string( $db_con, $_POST['pass'] );
-		$keepalive = mysqli_real_escape_string( $db_con, $_POST['keepalive'] );
-		if( !$keepalive ) {
-			$keepalive = 0;
+if (isset($_GET['redirect'])) {
+    
+    $redirect = mysqli_real_escape_string($db_con, $_GET['redirect']);
+} else {
+    
+    $redirect = ''; 
+}
+if (isset($_POST['email'])) {
+    
+    $email = strtolower(mysqli_real_escape_string($db_con, $_POST['email']));
+} else {
+   
+    $email = ''; 
+}
+		if (isset($_POST['pass'])) {
+			
+			$pass = mysqli_real_escape_string($db_con, $_POST['pass']);
+		} else {
+			
+			$pass = ''; 
 		}
 		$method = "login";
 
@@ -99,7 +110,6 @@ if ("serviceWorker" in navigator) {
 			}
 
 		}
-
 
 		?>
 
@@ -135,7 +145,7 @@ if ("serviceWorker" in navigator) {
 
 												</div>
 
-												<?php if( $_GET['msg'] == "erro" ) { ?>
+												<?php if (isset($_GET['msg']) && $_GET['msg'] == "erro")  ?>
 
 												<div class="row">
 
@@ -150,9 +160,9 @@ if ("serviceWorker" in navigator) {
 
 												</div>
 
-												<?php } ?>
+												<?php  ?>
 
-												<?php if( $_GET['msg'] == "alterada" ) { ?>
+												<?php if( $_GET['msg'] == "alterada" )  ?>
 
 												<div class="row">
 
@@ -167,7 +177,7 @@ if ("serviceWorker" in navigator) {
 
 												</div>
 
-												<?php } ?>
+												<?php  ?>
 
 												<div class="row">
 

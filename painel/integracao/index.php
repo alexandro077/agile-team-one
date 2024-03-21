@@ -82,6 +82,7 @@ function update_estabelecimento( $db_con, $public_key, $secret_key, $id)
 
 
 //se o botao salvar for clicado vai executar o post do form
+$formdata = $_POST['formdata'] ?? '';
 if ($formdata) {
 	
 	// Checar Erros gerados se nao enviar os dados
