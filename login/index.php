@@ -72,7 +72,7 @@ if ("serviceWorker" in navigator) {
 
 if (isset($_GET['redirect'])) {
     
-    $redirect = mysqli_real_escape_string($db_con, $_GET['redirect']);
+    $redirect = isset($_GET['redirect']) ? mysqli_real_escape_string($db_con, $_GET['redirect']): '' ;
 } else {
     
     $redirect = ''; 
