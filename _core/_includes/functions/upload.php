@@ -538,7 +538,7 @@ function gera_thumb( $file,$largura,$altura ) {
 
         if( imagejpeg( $new,$uploadpathfull."/".$new_name ) ) {;
            $uploadinfo['status'] = "1";
-           $uploadinfo['url'] = $uploadpathreturn."/".$new_name;
+           $uploadinfo['url'] = isset($uploadpathreturn)."/".$new_name;
            return $uploadinfo;
         } else {
            $uploadinfo['status'] = "2";
