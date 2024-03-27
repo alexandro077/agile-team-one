@@ -150,7 +150,7 @@ if( !$pagina OR $pagina > $total_paginas OR !is_numeric($pagina) ) {
 											</div>
 										</div>
 									</div>
-									<?php if( $_GET['filtered'] ) { ?>
+									<?php if( isset($_GET['filtered']) ) { ?>
 									<div class="row">
 										<div class="col-md-12">
 										    <a href="<?php admin_url(); ?>/estados" class="limpafiltros"><i class="lni lni-close"></i> Limpar filtros</a>

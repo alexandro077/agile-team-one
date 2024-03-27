@@ -226,7 +226,7 @@ global $simple_url;
               <div class="form-field-default">
 
                   <label>Estabelecimento:</label>
-                  <input class="autocompleter <?php if( isset($_POST['estabelecimento']) && $_POST['estabelecimento_id'] ) { echo "autocomplete-selected"; } ?>" type="text" name="estabelecimento" placeholder="Estabelecimento" value="<?php echo htmlclean( $_POST['estabelecimento'] ); ?>" completer_url="<?php just_url(); ?>/_core/_ajax/autocomplete_estabelecimentos.php" completer_field="estabelecimento_id">
+                  <input class="autocompleter <?php if(isset($_POST['estabelecimento']) && $_POST['estabelecimento_id'] ) { echo "autocomplete-selected"; } ?>" type="text" name="estabelecimento" placeholder="Estabelecimento" value="<?php echo htmlclean( isset($_POST['estabelecimento']) && $_POST['estabelecimento_id']); ?>" completer_url="<?php just_url(); ?>/_core/_ajax/autocomplete_estabelecimentos.php" completer_field="estabelecimento_id">
                   <input class="fakehidden" type="text" name="estabelecimento_id" value=""/>
 
               </div>
@@ -242,7 +242,7 @@ global $simple_url;
               <div class="form-field-default">
 
                   <label>Cidade:</label>
-                  <input class="autocompleter <?php if( isset($_POST['cidade']) && $_POST['cidade_id'] ) { echo "autocomplete-selected"; } ?>" type="text" name="cidade" placeholder="Cidade" value="<?php echo htmlclean( $_POST['cidade'] ); ?>" completer_url="<?php just_url(); ?>/_core/_ajax/autocomplete_cidades.php" completer_field="cidade_id">
+                  <input class="autocompleter <?php if( isset($_POST['cidade']) && $_POST['cidade_id'] ) { echo "autocomplete-selected"; } ?>" type="text" name="cidade" placeholder="Cidade" value="<?php echo htmlclean(isset($_POST['cidade']) && $_POST['cidade_id'] ); ?>" completer_url="<?php just_url(); ?>/_core/_ajax/autocomplete_cidades.php" completer_field="cidade_id">
                   <input class="fakehidden" type="text" name="cidade_id" value=""/>
 
               </div>
