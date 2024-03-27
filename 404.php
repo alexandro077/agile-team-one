@@ -3,7 +3,7 @@ require_once("_core/_includes/config.php");
 // SEO
 $seo_subtitle = "Página não encontrada";
 $seo_description = "Página não encontrada";
-$seo_keywords = $app['title'].", ".$seo_title;
+$seo_keywords = isset($app['title']).", ".$seo_title;
 $seo_image = get_just_url()."/_core/_cdn/img/favicon.png";
 // HEADER
 $system_header .= "";

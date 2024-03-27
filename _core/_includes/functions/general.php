@@ -350,13 +350,12 @@ function list_errors() {
 
 		// echo '<h4 class="title">Erro:</h4>';
 
+		$errormessage = $errormessage ?? []; // Define um array vazio como padrão
+
 		for( $x=0; $x < count( $errormessage ); $x++ ) {
-
-			echo '<div class="error-info"><i class="lni lni-close"></i> '.$errormessage[$x].'</div>';
-
+		  echo '<div class="error-info"><i class="lni lni-close"></i> '.$errormessage[$x].'</div>';
 		}
-
-	echo '</div>';
+		
 
 }
 
