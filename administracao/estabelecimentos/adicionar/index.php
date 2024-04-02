@@ -24,7 +24,7 @@ global $simple_url;
 
   // Checar se formulário foi executado
 
-  $formdata = $_POST['formdata'];
+  $formdata = $_POST['formdata'] ?? '';
 
   if( $formdata ) {
 
@@ -442,15 +442,20 @@ global $simple_url;
 
             <div class="col-md-12">
 
-              <?php if( $checkerrors ) { list_errors(); } ?>
+              <?php  
+                    $checkerrors = true;
 
-              <?php if( $_GET['msg'] == "erro" ) { ?>
+                    if( $checkerrors ) {
+                      list_errors();
+                    } ?>
+
+              <?php if( isset($_GET['msg']) && $_GET['msg'] == "erro" ) { ?>
 
                 <?php modal_alerta("Erro, tente novamente!","erro"); ?>
 
               <?php } ?>
 
-              <?php if( $_GET['msg'] == "sucesso" ) { ?>
+              <?php if( isset($_GET['msg']) && $_GET['msg'] == "sucesso" ) { ?>
 
                 <?php modal_alerta("Cadastro efetuado com sucesso!","sucesso"); ?>
 
@@ -487,7 +492,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Nome:</label>
-                        <input type="text" name="nome" placeholder="Nome do seu estabelecimento" value="<?php echo htmlclean( $_POST['nome'] ); ?>">
+                        <input type="text" name="nome" placeholder="Nome do seu estabelecimento" value="<?php echo htmlclean( isset($_POST['nome']) ); ?>">
 
                     </div>
 
@@ -502,7 +507,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Descrição:</label>
-                        <textarea rows="6" name="descricao" placeholder="Descrição do seu estabelecimento"><?php echo htmlclean( $_POST['descricao'] ); ?></textarea>
+                        <textarea rows="6" name="descricao" placeholder="Descrição do seu estabelecimento"><?php echo htmlclean( isset($_POST['descricao']) ); ?></textarea>
 
                     </div>
 
@@ -527,7 +532,7 @@ global $simple_url;
                               while( $quickdata = mysqli_fetch_array( $quicksql ) ) {
                               ?>
 
-                                <option <?php if( $_POST['segmento'] == $quickdata['id'] ) { echo "SELECTED"; }; ?> value="<?php echo $quickdata['id']; ?>"><?php echo $quickdata['nome']; ?></option>
+                                <option <?php if(isset( $_POST['segmento']) == $quickdata['id'] ) { echo "SELECTED"; }; ?> value="<?php echo $quickdata['id']; ?>"><?php echo $quickdata['nome']; ?></option>
 
                               <?php } ?>
 
@@ -554,7 +559,7 @@ global $simple_url;
                               while( $quickdata = mysqli_fetch_array( $quicksql ) ) {
                               ?>
 
-                                <option <?php if( $_POST['estado'] == $quickdata['id'] ) { echo "SELECTED"; }; ?> value="<?php echo $quickdata['id']; ?>"><?php echo $quickdata['nome']; ?></option>
+                                <option <?php if( isset($_POST['estado']) == $quickdata['id'] ) { echo "SELECTED"; }; ?> value="<?php echo $quickdata['id']; ?>"><?php echo $quickdata['nome']; ?></option>
 
                               <?php } ?>
 
@@ -597,7 +602,7 @@ global $simple_url;
                         <span class="form-tip">A URL que seus clientes usarão para acessar a estabelecimento, não serão permitidos acentos, cedilha, pontos e caracteres especiais.</span>
                         <div class="row lowpadd">
                           <div class="col-md-3 col-xs-6 col-sm-6">
-                            <input class="subdomain" type="text" name="subdominio" placeholder="estabelecimento" value="<?php echo subdomain( htmlclean( $_POST['subdominio'] ) ); ?>">
+                            <input class="subdomain" type="text" name="subdominio" placeholder="estabelecimento" value="<?php echo subdomain( htmlclean( isset($_POST['subdominio'] )) ); ?>">
                           </div>
                           <div class="col-md-9 col-xs-6 col-sm-6">
                             <input type="text" id="input-nome" name="url" value=".<?php echo $simple_url; ?>" DISABLED>
@@ -673,7 +678,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Cor personalizada:</label>
-                        <input class="thecolorpicker" type="text" name="cor" placeholder="Cor" value="<?php echo htmlclean( $_POST['cor'] ); if( !$_POST['cor'] ){ echo '#27293e'; } ?>">
+                        <input class="thecolorpicker" type="text" name="cor" placeholder="Cor" value="<?php echo htmlclean(isset( $_POST['cor']) ); if( isset($_POST['cor']) ){ echo '#27293e'; } ?>">
 
                     </div>
 
@@ -709,7 +714,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Qual valor de pedido minímo?:</label>
-                        <input class="maskmoney" type="text" name="pedido_minimo" placeholder="Valor de pedido minímo" value="<?php echo htmlclean( $_POST['pedido_minimo'] ); ?>">
+                        <input class="maskmoney" type="text" name="pedido_minimo" placeholder="Valor de pedido minímo" value="<?php echo htmlclean(isset( $_POST['pedido_minimo']) ); ?>">
 
                     </div>
 
@@ -725,10 +730,10 @@ global $simple_url;
 
                         <label>O estabelecimento aceita dinheiro?</label>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_dinheiro" value="1" <?php if( $_POST['pagamento_dinheiro'] == 1 OR !$_POST['pagamento_dinheiro'] ){ echo 'CHECKED'; }; ?>> Sim
+                          <input type="radio" name="pagamento_dinheiro" value="1" <?php if(isset( $_POST['pagamento_dinheiro']) == 1 OR isset($_POST['pagamento_dinheiro'] )){ echo 'CHECKED'; }; ?>> Sim
                         </div>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_dinheiro" value="2" <?php if( $_POST['pagamento_dinheiro'] == 2 ){ echo 'CHECKED'; }; ?>> Não
+                          <input type="radio" name="pagamento_dinheiro" value="2" <?php if(isset( $_POST['pagamento_dinheiro']) == 2 ){ echo 'CHECKED'; }; ?>> Não
                         </div>
                         <div class="clear"></div>
 
@@ -746,10 +751,10 @@ global $simple_url;
 
                         <label>O estabelecimento aceita cartão de débito?</label>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_cartao_debito" value="1" element-show=".elemento-bandeiras-debito" <?php if( $_POST['pagamento_cartao_debito'] == 1 OR !$_POST['pagamento_cartao_debito'] ){ echo 'CHECKED'; }; ?>> Sim
+                          <input type="radio" name="pagamento_cartao_debito" value="1" element-show=".elemento-bandeiras-debito" <?php if( isset($_POST['pagamento_cartao_debito']) == 1 OR isset($_POST['pagamento_cartao_debito']) ){ echo 'CHECKED'; }; ?>> Sim
                         </div>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_cartao_debito" value="2" element-hide=".elemento-bandeiras-debito" <?php if( $_POST['pagamento_cartao_debito'] == 2 ){ echo 'CHECKED'; }; ?>> Não
+                          <input type="radio" name="pagamento_cartao_debito" value="2" element-hide=".elemento-bandeiras-debito" <?php if( isset($_POST['pagamento_cartao_debito']) == 2 ){ echo 'CHECKED'; }; ?>> Não
                         </div>
                         <div class="clear"></div>
 
@@ -766,7 +771,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <?php
-                        if( $_POST['pagamento_cartao_debito_bandeiras'] ) {
+                        if( isset($_POST['pagamento_cartao_debito_bandeiras']) ) {
                           $field_pagamento_debito_bandeiras = $_POST['pagamento_cartao_debito_bandeiras'];
                         } else {
                           $field_pagamento_debito_bandeiras = "Visa, Mastercard e Elo";
@@ -789,10 +794,10 @@ global $simple_url;
 
                         <label>O estabelecimento aceita cartão de crédito?</label>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_cartao_credito" value="1" element-show=".elemento-bandeiras-credito" <?php if( $_POST['pagamento_cartao_credito'] == 1 OR !$_POST['pagamento_cartao_credito'] ){ echo 'CHECKED'; }; ?>> Sim
+                          <input type="radio" name="pagamento_cartao_credito" value="1" element-show=".elemento-bandeiras-credito" <?php if( isset($_POST['pagamento_cartao_credito'] )== 1 OR isset($_POST['pagamento_cartao_credito']) ){ echo 'CHECKED'; }; ?>> Sim
                         </div>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_cartao_credito" value="2" element-hide=".elemento-bandeiras-credito" <?php if( $_POST['pagamento_cartao_credito'] == 2 ){ echo 'CHECKED'; }; ?>> Não
+                          <input type="radio" name="pagamento_cartao_credito" value="2" element-hide=".elemento-bandeiras-credito" <?php if(isset( $_POST['pagamento_cartao_credito']) == 2 ){ echo 'CHECKED'; }; ?>> Não
                         </div>
                         <div class="clear"></div>
 
@@ -809,7 +814,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <?php
-                        if( $_POST['pagamento_cartao_credito_bandeiras'] ) {
+                        if( isset($_POST['pagamento_cartao_credito_bandeiras']) ) {
                           $field_pagamento_credito_bandeiras = $_POST['pagamento_cartao_credito_bandeiras'];
                         } else {
                           $field_pagamento_credito_bandeiras = "Visa, Mastercard e Elo";
@@ -832,10 +837,10 @@ global $simple_url;
 
                         <label>O estabelecimento aceita ticket alimentação?</label>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_cartao_alimentacao" value="1" element-show=".elemento-bandeiras-alimentacao" <?php if( $_POST['pagamento_cartao_alimentacao'] == 1 ){ echo 'CHECKED'; }; ?>> Sim
+                          <input type="radio" name="pagamento_cartao_alimentacao" value="1" element-show=".elemento-bandeiras-alimentacao" <?php if( isset($_POST['pagamento_cartao_alimentacao']) == 1 ){ echo 'CHECKED'; }; ?>> Sim
                         </div>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_cartao_alimentacao" value="2" element-hide=".elemento-bandeiras-alimentacao" <?php if( $_POST['pagamento_cartao_alimentacao'] == 2 OR !$_POST['pagamento_cartao_alimentacao'] ){ echo 'CHECKED'; }; ?>> Não
+                          <input type="radio" name="pagamento_cartao_alimentacao" value="2" element-hide=".elemento-bandeiras-alimentacao" <?php if(isset( $_POST['pagamento_cartao_alimentacao']) == 2 OR isset($_POST['pagamento_cartao_alimentacao']) ){ echo 'CHECKED'; }; ?>> Não
                         </div>
                         <div class="clear"></div>
 
@@ -852,7 +857,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <?php
-                        if( $_POST['pagamento_cartao_alimentacao_bandeiras'] ) {
+                        if(isset( $_POST['pagamento_cartao_alimentacao_bandeiras']) ) {
                           $field_pagamento_alimentacao_bandeiras = $_POST['pagamento_cartao_alimentacao_bandeiras'];
                         } else {
                           $field_pagamento_alimentacao_bandeiras = "Alelo e sodexo";
@@ -875,10 +880,10 @@ global $simple_url;
 
                         <label>O estabelecimento aceita alguma outra forma de pagamento?</label>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_outros" value="1" element-show=".elemento-outraforma" <?php if( $_POST['pagamento_outros'] == 1 ){ echo 'CHECKED'; }; ?>> Sim
+                          <input type="radio" name="pagamento_outros" value="1" element-show=".elemento-outraforma" <?php if( isset($_POST['pagamento_outros']) == 1 ){ echo 'CHECKED'; }; ?>> Sim
                         </div>
                         <div class="form-field-radio">
-                          <input type="radio" name="pagamento_outros" value="2" element-hide=".elemento-outraforma" <?php if( $_POST['pagamento_outros'] == 2 OR !$_POST['pagamento_outros'] ){ echo 'CHECKED'; }; ?>> Não
+                          <input type="radio" name="pagamento_outros" value="2" element-hide=".elemento-outraforma" <?php if(isset( $_POST['pagamento_outros']) == 2 OR isset($_POST['pagamento_outros']) ){ echo 'CHECKED'; }; ?>> Não
                         </div>
                         <div class="clear"></div>
 
@@ -895,7 +900,7 @@ global $simple_url;
                     <div class="form-field-default">  
 
                         <?php
-                        if( $_POST['pagamento_outros_descricao'] ) {
+                        if( isset($_POST['pagamento_outros_descricao']) ) {
                           $field_outros_descricao = $_POST['pagamento_outros_descricao'];
                         } else {
                           $field_outros_descricao = "Cheque, transferência e permuta";
@@ -941,7 +946,7 @@ global $simple_url;
                       <div class="form-field-default">
 
                           <label>CEP</label>
-                          <input class="maskcep" type="text" name="endereco_cep" placeholder="CEP" value="<?php echo htmlclean( $_POST['endereco_cep'] ); ?>">
+                          <input class="maskcep" type="text" name="endereco_cep" placeholder="CEP" value="<?php echo htmlclean(isset( $_POST['endereco_cep']) ); ?>">
 
                       </div>
 
@@ -952,7 +957,7 @@ global $simple_url;
                       <div class="form-field-default">
 
                           <label>Nº</label>
-                          <input type="text" name="endereco_numero" placeholder="Nº" value="<?php echo htmlclean( $_POST['endereco_numero'] ); ?>">
+                          <input type="text" name="endereco_numero" placeholder="Nº" value="<?php echo htmlclean( isset($_POST['endereco_numero']) ); ?>">
 
                       </div>
 
@@ -967,7 +972,7 @@ global $simple_url;
                       <div class="form-field-default">
 
                           <label>Bairro</label>
-                          <input type="text" name="endereco_bairro" placeholder="Bairro" value="<?php echo htmlclean( $_POST['endereco_bairro'] ); ?>">
+                          <input type="text" name="endereco_bairro" placeholder="Bairro" value="<?php echo htmlclean( isset($_POST['endereco_bairro']) ); ?>">
 
                       </div>
 
@@ -978,7 +983,7 @@ global $simple_url;
                       <div class="form-field-default">
 
                           <label>Rua</label>
-                          <input type="text" name="endereco_rua" placeholder="Rua" value="<?php echo htmlclean( $_POST['endereco_rua'] ); ?>">
+                          <input type="text" name="endereco_rua" placeholder="Rua" value="<?php echo htmlclean(isset( $_POST['endereco_rua']) ); ?>">
 
                       </div>
 
@@ -993,7 +998,7 @@ global $simple_url;
                       <div class="form-field-default">
 
                           <label>Complemento</label>
-                          <input type="text" name="endereco_complemento" placeholder="Complemento" value="<?php echo htmlclean( $_POST['endereco_complemento'] ); ?>">
+                          <input type="text" name="endereco_complemento" placeholder="Complemento" value="<?php echo htmlclean( isset($_POST['endereco_complemento']) ); ?>">
 
                       </div>
 
@@ -1008,7 +1013,7 @@ global $simple_url;
                       <div class="form-field-default">
 
                           <label>Ponto de referência</label>
-                          <input type="text" name="endereco_referencia" placeholder="Complemento" value="<?php echo htmlclean( $_POST['endereco_referencia'] ); ?>">
+                          <input type="text" name="endereco_referencia" placeholder="Complemento" value="<?php echo htmlclean( isset($_POST['endereco_referencia']) ); ?>">
 
                       </div>
 
@@ -1025,7 +1030,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Horário de funcionamento</label>
-                        <textarea rows="7" name="horario_funcionamento" placeholder="Horário de funcionamento"><?php echo htmlclean( $_POST['horario_funcionamento'] ); ?></textarea>
+                        <textarea rows="7" name="horario_funcionamento" placeholder="Horário de funcionamento"><?php echo htmlclean( isset($_POST['horario_funcionamento']) ); ?></textarea>
 
                     </div>
 
