@@ -1046,10 +1046,10 @@ global $simple_url;
 
                         <label>O estabelecimento permite retirada no local?</label>
                         <div class="form-field-radio">
-                          <input type="radio" name="entrega_retirada" value="1" <?php if( $_POST['entrega_retirada'] == 1 OR !$_POST['entrega_retirada'] ){ echo 'CHECKED'; }; ?>> Sim
+                          <input type="radio" name="entrega_retirada" value="1" <?php if(isset( $_POST['entrega_retirada']) == 1 OR isset($_POST['entrega_retirada']) ){ echo 'CHECKED'; }; ?>> Sim
                         </div>
                         <div class="form-field-radio">
-                          <input type="radio" name="entrega_retirada" value="2" <?php if( $_POST['entrega_retirada'] == 2 ){ echo 'CHECKED'; }; ?>> Não
+                          <input type="radio" name="entrega_retirada" value="2" <?php if( isset($_POST['entrega_retirada']) == 2 ){ echo 'CHECKED'; }; ?>> Não
                         </div>
                         <div class="clear"></div>
 
@@ -1067,10 +1067,10 @@ global $simple_url;
 
                         <label>O estabelecimento faz entregas?</label>
                         <div class="form-field-radio">
-                          <input type="radio" name="entrega_entrega" value="1" element-show=".elemento-frete" <?php if( $_POST['entrega_entrega'] == 1 OR !$_POST['entrega_entrega'] ){ echo 'CHECKED'; }; ?>> Sim
+                          <input type="radio" name="entrega_entrega" value="1" element-show=".elemento-frete" <?php if( isset($_POST['entrega_entrega'] )== 1 OR isset($_POST['entrega_entrega']) ){ echo 'CHECKED'; }; ?>> Sim
                         </div>
                         <div class="form-field-radio">
-                          <input type="radio" name="entrega_entrega" value="2" element-hide=".elemento-frete" <?php if( $_POST['entrega_entrega'] == 2 ){ echo 'CHECKED'; }; ?>> Não
+                          <input type="radio" name="entrega_entrega" value="2" element-hide=".elemento-frete" <?php if( isset($_POST['entrega_entrega']) == 2 ){ echo 'CHECKED'; }; ?>> Não
                         </div>
                         <div class="clear"></div>
 
@@ -1090,10 +1090,10 @@ global $simple_url;
 
                           <label>Qual tipo de frete?</label>
                           <div class="form-field-radio">
-                            <input type="radio" name="entrega_entrega_tipo" value="1" element-show=".elemento-frete-valor" <?php if( $_POST['entrega_entrega_tipo'] == 1 OR !$_POST['entrega_entrega_tipo'] ){ echo 'CHECKED'; }; ?>> Valor fixo
+                            <input type="radio" name="entrega_entrega_tipo" value="1" element-show=".elemento-frete-valor" <?php if( isset($_POST['entrega_entrega_tipo']) == 1 OR isset($_POST['entrega_entrega_tipo']) ){ echo 'CHECKED'; }; ?>> Valor fixo
                           </div>
                           <div class="form-field-radio">
-                            <input type="radio" name="entrega_entrega_tipo" value="2" element-hide=".elemento-frete-valor" <?php if( $_POST['entrega_entrega_tipo'] == 2 ){ echo 'CHECKED'; }; ?>> Sob consulta
+                            <input type="radio" name="entrega_entrega_tipo" value="2" element-hide=".elemento-frete-valor" <?php if( isset($_POST['entrega_entrega_tipo']) == 2 ){ echo 'CHECKED'; }; ?>> Sob consulta
                           </div>
                           <div class="clear"></div>
 
@@ -1112,7 +1112,7 @@ global $simple_url;
                         <div class="form-field-default">
 
                             <?php
-                            if( $_POST['entrega_entrega_valor'] ) {
+                            if( isset($_POST['entrega_entrega_valor']) ) {
                               $field_entrega_valor = $_POST['entrega_entrega_valor'];
                             } else {
                               $field_entrega_valor = "0.00";
@@ -1162,7 +1162,7 @@ global $simple_url;
 
                         <label>Whatsapp</label>
                         <span class="form-tip">Será o número no qual você receberá os pedidos</span>
-                        <input class="maskcel" type="text" name="contato_whatsapp" placeholder="Whatsapp" value="<?php echo htmlclean( $_POST['contato_whatsapp'] ); ?>">
+                        <input class="maskcel" type="text" name="contato_whatsapp" placeholder="Whatsapp" value="<?php echo htmlclean( isset($_POST['contato_whatsapp']) ); ?>">
 
                     </div>
 
@@ -1177,7 +1177,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>E-mail de contato</label>
-                        <input type="text" name="contato_email" placeholder="E-mail" value="<?php echo htmlclean( $_POST['contato_email'] ); ?>">
+                        <input type="text" name="contato_email" placeholder="E-mail" value="<?php echo htmlclean(isset( $_POST['contato_email']) ); ?>">
 
                     </div>
 
@@ -1192,7 +1192,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Instagram</label>
-                        <input type="text" name="contato_instagram" placeholder="Instagram" value="<?php echo htmlclean( $_POST['contato_instagram'] ); ?>">
+                        <input type="text" name="contato_instagram" placeholder="Instagram" value="<?php echo htmlclean( isset($_POST['contato_instagram']) ); ?>">
 
                     </div>
 
@@ -1207,7 +1207,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Facebook</label>
-                        <input type="text" name="contato_facebook" placeholder="Facebook" value="<?php echo htmlclean( $_POST['contato_facebook'] ); ?>">
+                        <input type="text" name="contato_facebook" placeholder="Facebook" value="<?php echo htmlclean( isset($_POST['contato_facebook']) ); ?>">
 
                     </div>
 
@@ -1222,7 +1222,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Youtube</label>
-                        <input type="text" name="contato_youtube" placeholder="Youtube" value="<?php echo htmlclean( $_POST['contato_youtube'] ); ?>">
+                        <input type="text" name="contato_youtube" placeholder="Youtube" value="<?php echo htmlclean( isset($_POST['contato_youtube']) ); ?>">
 
                     </div>
 
@@ -1260,7 +1260,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Nome completo:</label>
-                        <input type="text" id="input-nome" name="responsavel_nome" placeholder="Nome completo" value="<?php echo htmlclean( $_POST['responsavel_nome'] ); ?>">
+                        <input type="text" id="input-nome" name="responsavel_nome" placeholder="Nome completo" value="<?php echo htmlclean( isset($_POST['responsavel_nome']) ); ?>">
 
                     </div>
 
@@ -1275,7 +1275,7 @@ global $simple_url;
                       <div class="form-field-default">
 
                         <label>Data de nascimento:</label>
-                        <input type="text" class="maskdate" id="input-nascimento" name="responsavel_nascimento" placeholder="Data de nascimento" value="<?php echo htmlclean( $_POST['responsavel_nascimento'] ); ?>">
+                        <input type="text" class="maskdate" id="input-nascimento" name="responsavel_nascimento" placeholder="Data de nascimento" value="<?php echo htmlclean( isset($_POST['responsavel_nascimento']) ); ?>">
 
                     </div>
 
@@ -1295,7 +1295,7 @@ global $simple_url;
                           <select id="input-documento_tipo" name="responsavel_documento_tipo">
                             <option></option>
                             <?php for( $x = 0; $x < count( $numeric_data['documento_tipo'] ); $x++ ) { ?>
-                            <option value="<?php echo $numeric_data['documento_tipo'][$x]['value']; ?>" <?php if( $_POST['responsavel_documento_tipo'] == $numeric_data['documento_tipo'][$x]['value'] ) { echo 'SELECTED'; }; ?>><?php echo $numeric_data['documento_tipo'][$x]['name']; ?></option>
+                            <option value="<?php echo $numeric_data['documento_tipo'][$x]['value']; ?>" <?php if( isset($_POST['responsavel_documento_tipo']) == $numeric_data['documento_tipo'][$x]['value'] ) { echo 'SELECTED'; }; ?>><?php echo $numeric_data['documento_tipo'][$x]['name']; ?></option>
                             <?php } ?>
                           </select>
                           <div class="clear"></div>
@@ -1310,7 +1310,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>Nº do documento:</label>
-                        <input type="text" id="input-documento" name="responsavel_documento" placeholder="Nº do documento" value="<?php echo htmlclean( $_POST['responsavel_documento'] ); ?>">
+                        <input type="text" id="input-documento" name="responsavel_documento" placeholder="Nº do documento" value="<?php echo htmlclean( isset($_POST['responsavel_documento']) ); ?>">
 
                     </div>
 
@@ -1339,7 +1339,7 @@ global $simple_url;
                     <div class="form-field-default">
 
                         <label>E-mail</label>
-                        <input type="text" name="email" placeholder="E-mail" value="<?php echo htmlclean( $_POST['email'] ); ?>">
+                        <input type="text" name="email" placeholder="E-mail" value="<?php echo htmlclean( isset($_POST['email']) ); ?>">
 
                     </div>
 
@@ -1386,9 +1386,9 @@ global $simple_url;
                         <br/><br/> -->
 
                         <div class="form-field-terms">
-                          <input type="hidden" name="afiliado" value="<?php echo htmlclean( $_GET['afiliado'] ); ?>"/>
+                          <input type="hidden" name="afiliado" value="<?php echo htmlclean( isset($_GET['afiliado']) ); ?>"/>
                           <input type="hidden" name="formdata" value="1"/>
-                          <!-- <input type="radio" name="terms" value="1" <?php if( $_POST['terms'] ){ echo 'CHECKED'; }; ?>> Eu aceito os termos de uso -->
+                          <!-- <input type="radio" name="terms" value="1" <?php if(isset( $_POST['terms']) ){ echo 'CHECKED'; }; ?>> Eu aceito os termos de uso -->
                         </div>
 
                     </div>
@@ -1432,7 +1432,8 @@ include('../../_layout/footer.php');
   $( "#input-estado" ).change(function() {
     exibe_cidades();
   });
-  <?php if( $_POST['estado'] ) { ?>
+  <?php if( isset($_POST['estado']) ) { ?>
+
     exibe_cidades();
   <?php } ?>
 
@@ -1690,7 +1691,7 @@ $(document).ready(function() {
   $( "#input-estado" ).change(function() {
     var estado = $(this).children("option:selected").val();
     $("#input-cidade").html("<option>-- Carregando cidades --</option>");
-    $("#input-cidade").load("<?php just_url(); ?>/_core/_ajax/cidades.php?estado="+estado+"&cidade=<?php echo htmlclean( $_POST['cidade'] ); ?>");
+    $("#input-cidade").load("<?php just_url(); ?>/_core/_ajax/cidades.php?estado="+estado+"&cidade=<?php echo htmlclean( isset($_POST['cidade']) ); ?>");
   });
 
   $( "#input-estado" ).trigger("change");
